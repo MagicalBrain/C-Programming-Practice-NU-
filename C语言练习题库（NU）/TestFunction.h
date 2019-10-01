@@ -1,6 +1,7 @@
 #pragma once
 #include <stdio.h>
 #include "Function.h"
+#include <math.h>
 
 void Testfunc01()
 {
@@ -13,4 +14,9 @@ void Testfunc01()
 		puts("是素数！");
 	else
 		puts("不是素数！");
+}
+
+void Testfunc02()
+{
+	func02();
 }

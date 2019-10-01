@@ -3,6 +3,7 @@
 
 int main()
 {
-	Testfunc01();
+	//Testfunc01();
+	Testfunc02();
 	return 0;
 }

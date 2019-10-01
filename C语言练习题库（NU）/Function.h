@@ -18,3 +18,41 @@ bool func01(int num)
 	}
 	return false;
 }
+
+void shuixian(int num)
+{
+	int i = 0, t, tmp = num;
+	int w[5];	
+	/*
+	注意数组长度为5的话，当范围再大一点就会造成数组溢出，
+	例如:范围大到200000
+	*/
+
+	while (tmp > 0)
+	{
+		w[i] = tmp % 10;
+		i++;
+		tmp /= 10;
+	}
+
+	int sum = 0;
+	for ( t = 0; t < i; t++)
+	{
+		if (w[t])
+			sum += (int)(pow(w[t], i));
+	}
+	if (sum == num)
+		printf("%d\n", num);
+}
+
+void func02()
+/*
+打印1到20000的所有水仙花数
+*/
+{
+	int i;
+	for ( i = 1; i <= 20000; i++)
+	{
+		shuixian(i);
+	}
+}
