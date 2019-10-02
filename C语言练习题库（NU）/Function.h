@@ -51,8 +51,64 @@ void func02()
 */
 {
 	int i;
-	for ( i = 1; i <= 20000; i++)
+	for ( i = 2; i <= 20000; i++)
 	{
 		shuixian(i);
 	}
+}
+
+void func03()
+/*
+求出2到20000的所有完数
+*/
+{
+	int num, sum;
+	for (int i = 2; i <= 20000; i++)
+	{
+		num = i;
+		sum = 0;
+		for (int j = 1; j < i; j++)
+		{
+			if (num % j == 0)
+				sum += j;
+		}
+		if (sum == num)
+			printf("%d\n", num);
+	}
+}
+
+int gcd(int m, int n)
+/*
+求m，n的最大公因数
+*/
+{
+	if (n == 0)
+		return m;
+	gcd(n, m % n);
+}
+
+int func04(int m,int n)
+/*
+求m和n的最小公倍数
+*/
+{
+	return (m*n)/gcd(m,n);
+}
+
+double func05()
+/*
+小球从10m高的地方掉下，每一次弹回之前高度的一半，问求静止后，走过的距离
+*/
+{
+	double sc = 0.0000001;
+	double h = 10;
+	double sum = 10;
+	h /= 2;
+	while (h > sc)
+	{
+		sum += 2 * h;
+		//printf("%lf\n", h);
+		h /= 2;
+	}
+	return sum;
 }
