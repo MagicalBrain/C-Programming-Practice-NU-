@@ -8,8 +8,10 @@ int main()
 	//Testfunc02();
 	//Testfunc03();
 	//Testfunc04();
-	Testfunc05();
-
+	//Testfunc05();
+	//Testfunc06();
+	//Testfunc07();
+	Testfunc08();
 	
 	return 0;
 }

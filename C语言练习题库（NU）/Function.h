@@ -112,3 +112,136 @@ double func05()
 	}
 	return sum;
 }
+
+int func06(int num)
+/*
+输出指定序号的斐波那契数
+*/
+{
+	if (num <= 2)
+		return 1;
+	else
+		return func06(num - 2) + func06(num - 1);
+	//return 0;
+}
+
+int func07(char str[])
+/*
+统计字符串中单词的个数
+*/
+{
+	char tmp[20];
+	int top = 0;
+	int i = 0,re = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == ' ')
+		{
+			if (str[i - 1] == 'a' || str[i - 1] == 'A')
+			{
+				if (top > 1)
+					re++;
+			}
+			else
+				re++;
+			top = 0;
+		}
+		else
+			tmp[top++] = str[i];
+		i++;
+	}
+	return re+1;
+}
+
+void func08()
+{
+	char a[] = {'a','b','c'};
+	char b[] = { 'd','e','f' };
+
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			switch (a[i])
+			{
+			case 'a':
+				if (b[j] == 'd')
+					continue;
+				break;
+			case 'c':
+				if (b[j] == 'd' || b[j] == 'f')
+					continue;
+			default:
+				break;
+			}
+			printf("%c with %c\n", a[i], b[j]);
+		}
+		
+	}
+}
+
+char* func09(char s1[], char s2[],char s3[])
+{
+	int l1 = sizeof(s1) / sizeof(char);
+	int l2 = sizeof(s2) / sizeof(char);
+	int l3 = sizeof(s3) / sizeof(char);
+
+	int i = 0, l;
+	char* re = NULL;
+	while (i < l1 && i < l2)
+	{
+		if (s1[i] < s2[i])
+		{
+			re = s2;
+			l = l2;
+			break;
+		}
+		else if (s1[i] > s2[i])
+		{
+			re = s1;
+			l = l1;
+			break;
+		}
+		else
+			i++;
+	}
+	if (NULL == re)
+		if (l1 > l2)
+		{
+			re = s1;
+			l = l1;
+		}
+		else
+		{
+			re = s2;
+			l = l2;
+		}
+	i = 0;
+	while (i < l && i < l3)
+	{
+		if (re[i] < s3[i])
+		{
+			re = s3;
+			l = l3;
+			break;
+		}
+		else if (re[i] > s3[i])
+		{
+			break;
+		}
+		else
+			i++;
+	}
+	if (NULL == re)
+		if (l1 > l2)
+		{
+			re = s1;
+			l = l1;
+		}
+		else
+		{
+			re = s2;
+			l = l2;
+		}
+	return s1;
+}

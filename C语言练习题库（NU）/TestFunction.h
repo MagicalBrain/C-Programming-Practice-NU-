@@ -51,3 +51,27 @@ void Testfunc05()
 	dis += h;
 	printf("°×Æ¤Êé½á¹û£º%f:", dis);
 }
+
+void Testfunc06()
+{
+	int num;
+	scanf("%d", &num);
+
+	for (int i = 1; i <= num; i++)
+	{
+		printf("%d,", func06(i));
+	}
+	printf("\n");
+}
+
+void Testfunc07()
+{
+	char str[100] = "A pen drop from a big tree";
+	int re = func07(str);
+	printf("%d\n", re);
+}
+
+void Testfunc08()
+{
+	func08();
+}
