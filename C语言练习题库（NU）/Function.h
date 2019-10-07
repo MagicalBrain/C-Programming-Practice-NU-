@@ -1,5 +1,6 @@
 #pragma once
 #include <stdio.h>
+#include <malloc.h>
 #include <math.h>
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -180,11 +181,10 @@ void func08()
 	}
 }
 
-char* func09(char s1[], char s2[],char s3[])
+char* CompareStr(char s1[], char s2[])
 {
 	int l1 = sizeof(s1) / sizeof(char);
 	int l2 = sizeof(s2) / sizeof(char);
-	int l3 = sizeof(s3) / sizeof(char);
 
 	int i = 0, l;
 	char* re = NULL;
@@ -216,32 +216,241 @@ char* func09(char s1[], char s2[],char s3[])
 			re = s2;
 			l = l2;
 		}
-	i = 0;
-	while (i < l && i < l3)
+	
+	return re;
+}
+
+char* func09(char s1[], char s2[],char s3[])
+{
+	char* t;
+	t = CompareStr(s1, s2);
+	t = CompareStr(t, s3);
+	return t;
+}
+
+void func10(char* str)
+{
+	int i = 0;
+	int U = 0, D = 0, N = 0, S = 0, E = 0;
+	//U大写，D小写，N数字，S空格，E其他
+	while (str[i] != '\0')
 	{
-		if (re[i] < s3[i])
+		if (str[i] == '\n')
 		{
-			re = s3;
-			l = l3;
-			break;
-		}
-		else if (re[i] > s3[i])
-		{
-			break;
-		}
-		else
 			i++;
+			continue;
+		}
+		if (str[i] >= 'A' && str[i] <= 'Z')
+			U++;
+		else if (str[i] >= 'a' && str[i] <= 'z')
+			D++;
+		else if (str[i] >= '0' && str[i] <= '9')
+			N++;
+		else if (str[i] == ' ')
+			S++;
+		else
+			E++;
+		i++;
+		
 	}
-	if (NULL == re)
-		if (l1 > l2)
+	printf("大写字母：%d\n小写字母：%d\n数字：%d\n空格：%d\n其他字符：%d\n",U,D,N,S,E);
+}
+
+void func11(int **a,int r,int c)
+{
+	int* max = (int*)malloc(r * sizeof(int));
+	int* min = (int*)malloc(c * sizeof(int));
+	int* max_r = (int*)malloc(r * sizeof(int));
+	//int* min_c = (int*)malloc(c * sizeof(int));
+	
+	for (int i = 0; i < r; i++)
+	{
+		max[i] = 0;
+	}
+	
+
+	for (int i = 0; i < r; i++)
+	{
+		for (int j = 0; j < c; j++)
 		{
-			re = s1;
-			l = l1;
+			if (a[i][j] > max[i])
+			{
+				max[i] = a[i][j];
+				max_r[i] = j;
+			}
+		}
+	}
+
+	for (int i = 0; i < c; i++)
+	{
+		min[i] = a[0][i];
+		for (int j = 0; j < r; j++)
+		{
+			if (a[j][i] < min[i])
+			{
+				min[i] = a[j][i];
+			}
+		}
+	}
+
+	for (int i = 0; i < r; i++)
+	{
+		for (int j = 0; j < c; j++)
+		{
+			if (a[i][max_r[i]] == min[j])
+				printf("鞍点为：%d，（%d,%d）\n", max[i],i,j);
+		}
+	}
+}
+
+char* func12(char *str)
+{
+	int i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] >= 'A' && str[i] <= 'Z')
+		{
+			str[i] = 'Z' - ((str[i] - 'A') % 26);
+		}
+		else if(str[i] >= 'a' && str[i] <= 'z')
+			str[i] = 'z' - ((str[i] - 'a') % 26);
+		i++;
+	}
+	return str;
+}
+
+char* func13(char* str1, char* str2)
+{
+	int i = 0, flag = 0;
+	while (str1[i] != '\0')
+		i++;
+
+	flag = i; i = 0;
+	while (str2[i] != '\0')
+	{
+		str1[flag + i] = str2[i];
+		i++;
+	}
+	return str1;
+}
+
+int func14(char* str1, char* str2)
+{
+	int i = 0;
+	while (str1[i] != '\0' && str2[i] != '\0')
+	{
+		if (str1[i] > str2[i])
+		{
+			return str1[i] - str2[i];
+		}
+		else if (str1[i] < str2[i])
+			return str1[i] - str2[i];	
+		i++;
+	}
+	if (str1[i] != '\0')
+		return 1;
+	else if (str2[i] != '\0')
+		return -1;
+	return 0;
+}
+
+void func15(char *s1, char *s2)
+{
+	int i = 0, j = 0;
+	while (s1[i] != '\0')
+		i++;
+	while (s2[j] != '\0')
+	{
+		s1[i] = s2[j];
+		i++;
+		j++;
+	}
+}
+
+void func16(int in[],int l)
+{
+	//int l = sizeof(in) / sizeof(int);
+	int* fu = (int*)malloc(l * sizeof(int));
+	int* zh = (int*)malloc(l * sizeof(int));
+	int f = 0, z = 0;
+	for (int i = 0; i < l; i++)
+	{
+		if (in[i] < 0)
+			fu[f++] = in[i];
+		if (in[i] > 0)
+			zh[z++] = in[i];
+		else if(in[i]==0)
+			fu[f++] = in[i];
+	}
+	z = 0;
+	for (int i = 0; i < l; i++)
+	{
+		if (i < f)
+			in[i] = fu[i];
+		else
+			in[i] = zh[z++];
+	}
+}
+
+bool func17(int a[10],int b[10])
+{
+	int geq = 0, e = 0, leq = 0;
+	for (int i = 0; i < 10; i++)
+	{
+		if (a[i] > b[i])
+			geq++;
+		if (a[i] < b[i])
+			leq++;
+		if (a[i] == b[i])
+			e++;
+	}
+	printf("大于次数：%d\n等于次数：%d\n小于次数：%d\n", geq, e, leq);
+	if (geq > 5)
+		return true;
+	else 
+		return false;
+}
+
+void func18(char *str)
+{
+	int l = 0, mid;
+	while (str[l] != '\0')
+		l++;
+	mid = l / 2;
+	for (int i = 0; i < mid; i++)
+	{
+		char t = str[i];
+		str[i] = str[l - i - 1];
+		str[l - i - 1] = t;
+	}
+}
+
+void func19()
+{
+	int a, n;
+	puts("输入a：");
+	scanf("%d", &a);
+	puts("输入n：");
+	scanf("%d", &n);
+	
+	double l = 1;
+	double* num = (double*)malloc(sizeof(double));
+	for (int i = 0; i < n; i++)
+	{
+		if (i > 0)
+		{
+			num[i] = num[i - 1] + (a * l);
 		}
 		else
-		{
-			re = s2;
-			l = l2;
-		}
-	return s1;
+			num[i] = a;
+		l *= 10;
+		//printf("%d, ", num[i]);
+	}
+	//printf("\n");
+	double re = 0;
+	for (int i = 0; i < n; i++)
+	{
+		re += num[i];
+	}
+	printf("%ld\n", re);
 }
