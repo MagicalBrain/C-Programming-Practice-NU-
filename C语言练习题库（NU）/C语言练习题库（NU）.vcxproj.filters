@@ -26,5 +26,8 @@
     <ClInclude Include="TestFunction.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Function33.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,11 +2,16 @@
 #include <stdio.h>
 #include "Function.h"
 #include <math.h>
+#include "Function33.h"
+#include<iostream>
+#include <fstream>
+
+using namespace std;
 
 void Testfunc01()
 {
 	int num;
-	char str[50];
+	//char str[50];
 	puts("请输入一个整数：");
 	//gets_s(str, 50);
 	scanf("%d", &num);
@@ -234,4 +239,193 @@ void Testfunc18()
 void Testfunc19()
 {
 	func19();
+}
+
+void Testfunc20()
+{
+	int a, b;
+	scanf("%d%d", &a, &b);
+	process(a, b);
+	process(a, b);
+	process(a, b);
+}
+
+void Testfunc21()
+{
+	func21();
+}
+
+void Testfunc22()
+{
+	//char s[5] = {'a','b','c','d','e'};	这种情况怎么处理？
+	char s[100] = "adsfag";
+	printf("%d\n",func22(s));
+}
+
+void Testfunc23()
+{
+	int num[10] = {1,2,3,4,5,6,7,8,9,10};
+	func23(num, 10, 9);
+	for (int i = 0; i < 10; i++)
+	{
+		printf("%d, ", num[i]);
+	}
+	printf("\n");
+}
+
+void Testfunc24()
+{
+	char str[100] = "qweasdf";//7+1=8
+	char s0[100];//4+1=5
+	int num;
+	puts("输入m：");
+	scanf("%d", &num);
+	puts(str);
+	if (func24(str, 8, num, s0))
+	{
+		puts("处理成功！");
+		
+		puts(s0);
+	}
+	else
+		puts("处理失败！");
+}
+
+void Testfunc25()
+{
+	char str[100] = "qweasdf";
+	char s0[100] = "jkli";
+	int i, j;
+
+	puts(str);
+	puts(s0);
+	puts("输入i：");
+	scanf("%d", &i);
+	puts("输入j：");
+	scanf("%d", &j);
+	
+	replace(str, s0, i, j);
+	puts(str);
+}
+
+void Testfunc26()
+{
+	puts("我的答案：");
+	printf("%lf\n", func26());
+
+	puts("师兄的答案：");
+
+	int num = 2;
+	int den = 1;
+	double sum = 0;
+	int cnt = 1;
+
+	for (; cnt <= 20; cnt++)
+	{
+		sum += num * 1.0 / den;
+
+		num += den;
+		den = num - den;
+	}
+
+	printf("%f\n", sum);
+}
+
+void Testfunc27()
+{
+	func27();
+}
+
+void Testfunc28()
+{
+	printf("%lf\n",func28(10,3));
+
+	printf("%f\n", P(10, 3));
+}
+
+void Testfunc29()
+{
+	int n;
+	puts("输入n：");
+	scanf("%d", &n);
+	func29(n);
+	puts("");
+	func2901(n);
+}
+
+void Testfunc30()
+{
+	func30();
+	func3001();
+}
+
+void Testfunc31()
+{
+	char str1[100] = "asdfg";
+	char str2[100];
+	puts(str1);
+	func31(str1, str2);
+	puts(str2);
+}
+
+void Testfunc32()
+{
+	func32();
+}
+
+void Testfunc33()
+{
+	CourseScoreRecords stu = {0};
+	int score[stuNum] = { 0 };
+	ifstream fin;
+	fstream fout;
+	//puts("C:\\C++ 试作品\\VS2015 Project\\sjjg02\\东北大学C语言题库\\C语言练习题库（NU）\\func33.textfin.open("func33.text",ios::in);
+	fin.open("func33.txt");
+	if (!fin.is_open())
+		//cout << "文件打开失败！" << endl;
+		perror("Error:");
+	//if (!fout.is_open())
+	//	cout << "文件打开失败！" << endl;
+	for (int i = 0; i < stuNum; i++)
+	{
+		//printf("学生%d的信息：\n", i + 1);
+		//puts("输入学生姓名：");
+		//scanf("%s", stu[i].StudentName);
+		fin >> stu[i].StudentName;
+		//puts("输入语文成绩：");
+		//scanf("%d", &stu[i].ChineseScore);
+		fin >> stu[i].ChineseScore;
+		//puts("输入数学成绩：");
+		fin >> stu[i].MathScore;
+		//scanf("%d", &stu[i].MathScore);
+		//puts("输入英语成绩：");
+		//scanf("%d", &stu[i].EnglishScore);
+		fin >> stu[i].EnglishScore;
+	}
+	fin.clear();
+	fin.close();
+	for (int i = 0; i < stuNum; i++)
+	{
+		cout << stu[i].StudentName << endl;
+		cout << stu[i].ChineseScore << endl;
+		cout << stu[i].MathScore << endl;
+		cout << stu[i].EnglishScore << endl;
+	}
+
+	func33(stu,score);
+
+	for (int i = 0; i < stuNum; i++)
+	{
+		printf("%d:%d\n", i + 1, score[i]);
+	}
+}
+
+void Testfunc_string()
+{
+	char str1[100] = "asdfg";
+	char str2[100] = "wefg";
+	if (strcmp(str1, str2))
+		puts(str1);
+	else
+		puts(str2);
 }
