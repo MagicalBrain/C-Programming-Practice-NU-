@@ -632,14 +632,14 @@ void func27()
 			if (array[i][j])
 			{
 				if (array[i][j] / 100 != 0)
-					printf("%d ", array[i][j]);
+					printf("%.3d", array[i][j]);
 				else if (array[i][j] / 10 != 0)
-					printf("%d  ", array[i][j]);
+					printf("%.3d", array[i][j]);
 				else
-					printf("%d   ", array[i][j]);
+					printf("%.3d", array[i][j]);
 			}
 			else
-				printf("    ");
+				printf("   ");
 		printf("\n");
 	}
 	printf("\n");

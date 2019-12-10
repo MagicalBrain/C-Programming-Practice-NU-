@@ -34,12 +34,12 @@ int main()
 	//Testfunc24(); 
 	//Testfunc25();
 	//Testfunc26();
-	//Testfunc27();
+	Testfunc27();
 	//Testfunc28();
 	//Testfunc29();
 	//Testfunc30();
 	//Testfunc31();
-	Testfunc32();
+	//Testfunc32();
 	//Testfunc33();
 	//Testfunc_string();
 
